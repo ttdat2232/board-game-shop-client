@@ -1,0 +1,14 @@
+<div class="row mb-3">
+    <div *ngFor="let product of pagingResult.values" class="col-lg-3 col-sm-6">
+        <div class="product">
+            <app-product [product]="product"></app-product>
+        </div>
+    </div>
+</div>
+<mat-paginator 
+[pageIndex]="pagingResult.pageIndex"
+[pageSize]="pagingResult.pageSize"
+[length]="pagingResult.totalCount"
+[hidePageSize]="true"
+(page)="pageChange($event)"
+[pageSizeOptions]="[4, 8, 16]"></mat-paginator>
