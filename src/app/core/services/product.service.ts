@@ -11,11 +11,16 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class ProductService {
+
   productUrl: string = AppConstant.BASE_URL + "/api/product";
   constructor(private http: HttpClient ) { }
   
   getProducts(searchProduct?: SearchProduct): Observable<PagingResult<Product>> {
     var queriesUrl = AppUtils.generateQueriesUrl(this.productUrl, searchProduct);
     return this.http.get<PagingResult<Product>>(queriesUrl);
+  }
+
+  getProductById(productId: string): Observable<Product> {
+    return this.http.get<Product>(`${this.productUrl}/${productId}`);
   }
 }

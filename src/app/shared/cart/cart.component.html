@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-4">
+        product
+    </div>
+    <div class="col-8">
+        <div class="cart-details" *ngFor="let key of getKeys()">
+            <button class="btn-close"></button>
+            <app-cart-item (quantityChange)="changeQuantityOfProduct(key, $event)" [product]="key" [quantity]="productMap.get(key) ?? 0"></app-cart-item>
+        </div>
+        <app-spinner *ngIf="numberOfSelectedProducts !== productMap.size"></app-spinner>
+    </div>
+    <app-button [btnName]="'Thanh toán'"></app-button>
+</div>

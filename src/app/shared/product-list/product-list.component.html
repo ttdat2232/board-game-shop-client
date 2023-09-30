@@ -1,4 +1,7 @@
 <div class="row mb-3">
+    <div *ngIf="isLoad" class="d-flex justify-content-center mt-5">
+        <app-spinner></app-spinner>
+    </div>
     <div *ngFor="let product of pagingResult.values" class="col-lg-3 col-sm-6">
         <div class="product">
             <app-product [product]="product"></app-product>
@@ -11,4 +14,5 @@
 [length]="pagingResult.totalCount"
 [hidePageSize]="true"
 (page)="pageChange($event)"
-[pageSizeOptions]="[4, 8, 16]"></mat-paginator>
+[pageSizeOptions]="[4, 8, 16]">
+</mat-paginator>
