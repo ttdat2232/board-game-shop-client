@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+    <form [formGroup]="form" class="row" style="width: 70%;">
+        <div class="form-group col-6">
+            <label>Tỉnh/Thành</label>
+            <select class="form-control" (change)="onProviceChange($event)" formControlName="province">
+                <option *ngFor="let division of divisions" [value]="division.code + ',' + division.name">
+                    {{division.name}}</option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label>Quận/Huyện</label>
+            <select class="form-control" (change)="onDistrictChange($event)" formControlName="district">
+                <option *ngFor="let district of districts" [value]="district.code + ',' + district.name">
+                    {{district.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label>Phường/Xã</label>
+            <select class="form-control" formControlName="ward">
+                <option *ngFor="let ward of wards" [value]="ward.name">
+                    {{ward.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label>Đường, Số nhà</label>
+            <input type="text" class="form-control" formControlName="houseNumber" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="tel" class="form-control" formControlName="phoneNumber" />
+        </div>
+    </form>
+</div>

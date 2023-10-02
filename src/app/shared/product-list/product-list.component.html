@@ -1,11 +1,11 @@
 <div class="row mb-3">
-    <div *ngIf="isLoad" class="d-flex justify-content-center mt-5">
-        <app-spinner></app-spinner>
-    </div>
-    <div *ngFor="let product of pagingResult.values" class="col-lg-3 col-sm-6">
+    <div *ngFor="let product of pagingResult.values" class="col-xxl-3 col-md-6">
         <div class="product">
             <app-product [product]="product"></app-product>
         </div>
+    </div>
+    <div *ngIf="isLoad" class="d-flex justify-content-center mt-5">
+        <app-spinner></app-spinner>
     </div>
 </div>
 <mat-paginator 

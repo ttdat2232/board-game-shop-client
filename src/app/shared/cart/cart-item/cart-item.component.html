@@ -1,7 +1,10 @@
-<mat-card class="d-flex flex-row row">
+<mat-card class="d-flex flex-row row" @simpleAnimation *ngIf="product">
     <div class="col-9 d-flex flex-row align-items-center">
         <img mat-card-sm-image src="{{image}}" style="margin-right: 5%;" class="object-fit-cover">
-        <mat-card-title>{{product.informations[0].name}}</mat-card-title>
+        <div class="d-flex flex-column">
+            <mat-card-title>{{product.informations[0].name}}</mat-card-title>
+            <mat-card-title class="money">Giá: {{price}}</mat-card-title>
+        </div>
     </div>
     <div class="col-3 d-flex flex-row align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="col bi bi-dash-circle" (click)="modifyProdcutQuantity(false)"

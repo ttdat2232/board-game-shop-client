@@ -2,7 +2,20 @@ mat-card {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: .375rem;
 }
+
 img {
     height: 250px;
     object-fit: cover;
+}
+
+.btn-buy {
+    ::ng-deep {
+        .custom-button:before {
+            background-color: #37ff00;
+        }
+
+        .custom-button:hover {
+            color: #fff;
+        }
+    }
 }

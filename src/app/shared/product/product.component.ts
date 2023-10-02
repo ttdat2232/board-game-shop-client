@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations'
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card'
 import { Product } from 'src/app/core/models/product';
@@ -16,6 +17,12 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
     CommonModule,
     MatCardModule,
     ButtonComponent,
+  ],
+  providers: [
+    provideAnimations()
+  ],
+  animations: [
+    AppUtils.simpleAnimation
   ]
 })
 export class ProductComponent implements OnInit, OnChanges {

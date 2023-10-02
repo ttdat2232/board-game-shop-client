@@ -1,15 +1,24 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations'
+
 import { MatCardModule } from '@angular/material/card'
 import { CommonModule } from '@angular/common';
 import { Product } from 'src/app/core/models/product';
 import { Language, ProductInformation } from 'src/app/core/models/ProductInformation';
+import { AppUtils } from 'src/app/utils/app.utils';
 
 @Component({
   selector: 'app-cart-item',
   standalone: true,
   imports: [CommonModule, MatCardModule],
+  providers: [
+    provideAnimations()
+  ],
   templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.scss']
+  styleUrls: ['./cart-item.component.scss'],
+  animations: [
+    AppUtils.simpleAnimation
+  ]
 })
 export class CartItemComponent implements OnInit {
 
@@ -40,6 +49,7 @@ export class CartItemComponent implements OnInit {
 
   modifyProdcutQuantity(isPlus: boolean) {
     this.quantity = isPlus ? ++this.quantity : --this.quantity;
+    this.price = this.quantity * this.product.price;
     this.quantityChange.emit(this.quantity);
   }
 }

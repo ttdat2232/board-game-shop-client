@@ -1,3 +1,5 @@
+import { trigger, state, style, animate, transition, } from '@angular/animations'
+
 export class AppUtils {
   static generateQueriesUrl(baseUrl: string, searchObject?: object): string {
     if (!searchObject)
@@ -18,7 +20,7 @@ export class AppUtils {
     return queriesUrl;
   }
   static mapReplacer(key: any, value: any) {
-    if(value instanceof Map) {
+    if (value instanceof Map) {
       return {
         dataType: 'Map',
         value: Array.from(value.entries()),
@@ -29,11 +31,26 @@ export class AppUtils {
   }
 
   static mapReviver(key: any, value: any) {
-    if(typeof value === 'object' && value !== null) {
+    if (typeof value === 'object' && value !== null) {
       if (value.dataType === 'Map') {
         return new Map(value.value);
       }
     }
     return value;
   }
+
+  static getCart(): Map<string, number> {
+    let cartString = localStorage.getItem("cart");
+    let mapProductIdQuantity: Map<string, number> = new Map();
+    if (cartString)
+      mapProductIdQuantity = JSON.parse(cartString, AppUtils.mapReviver);
+    return mapProductIdQuantity;
+  }
+
+  static simpleAnimation = trigger('simpleAnimation', [
+    transition(':enter', [
+      style({ transform: 'translateY(50%)', opacity: 0 }),
+      animate('500ms ease', style({ transform: 'translateY(0%)', opacity: 1 }))
+    ]),
+  ]);
 }

@@ -2,7 +2,6 @@
   appearance: none;
   background-color: #FFFFFF;
   border-width: 0;
-  border-radius: 0.375rem;
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
@@ -56,4 +55,7 @@
 .custom-button span {
   z-index: 1;
   position: relative;
+}
+.custom-button {
+  border-radius: 0.375rem;
 }

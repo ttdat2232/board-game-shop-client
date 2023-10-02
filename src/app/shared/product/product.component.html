@@ -1,9 +1,9 @@
-<mat-card class="p-2">
+<mat-card class="p-2" @simpleAnimation *ngIf="product">
     <mat-card-title>{{product.informations[0].name}}</mat-card-title>
     <img mat-card-image src="{{image}}" />
-    <mat-card-header>{{product.price}}</mat-card-header>
+    <mat-card-header class="money">Giá: {{product.price}}</mat-card-header>
     <mat-card-actions>
-        <app-button [btnName]="'Mua'" (clickEvent)="onAddToCart($event)"></app-button>
+        <app-button [btnName]="'Mua'" (clickEvent)="onAddToCart($event)" class="btn-buy"></app-button>
         <app-button [btnName]="'Chi tiết'"></app-button>
     </mat-card-actions>
 </mat-card>

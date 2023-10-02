@@ -1,10 +1,24 @@
+// @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 .cart-details {
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: .375rem;
     transition: 0.3s all;
 }
+
 .cart-details:hover {
     transform: scale(1.05);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.checkout-button {
+    ::ng-deep {
+        .custom-button:before {
+            background-color: #37ff00;
+        }
+
+        .custom-button:hover {
+            color: #fff;
+        }
+    }
 }

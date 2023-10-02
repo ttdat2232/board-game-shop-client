@@ -1,3 +1,14 @@
 nav {
     background-color: rgba(255, 255, 255, 0.6);
 }
+
+.custom-cart {
+    position: relative;
+}
+
+.custom-cart span {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: block;
+}

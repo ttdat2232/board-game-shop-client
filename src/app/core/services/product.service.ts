@@ -12,7 +12,7 @@ import { Product } from '../models/product';
 })
 export class ProductService {
 
-  productUrl: string = AppConstant.BASE_URL + "/api/product";
+  private productUrl: string = AppConstant.BASE_URL + "/api/product";
   constructor(private http: HttpClient ) { }
   
   getProducts(searchProduct?: SearchProduct): Observable<PagingResult<Product>> {

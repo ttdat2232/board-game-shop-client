@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   numberOfCartLine: number = 0;
-  constructor(private localStorageService: LocalStorageService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private localStorageService: LocalStorageService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.localStorageService.localStorage.subscribe(() => {
@@ -19,15 +19,13 @@ export class NavbarComponent implements OnInit {
   }
 
   setNumberOfCartLine() {
-    let cartString = localStorage.getItem("cart");
-    if(!cartString || cartString == "{}")
-      return;
-    let productMap: Map<string, number> = JSON.parse(cartString, AppUtils.mapReviver);
-    this.numberOfCartLine = productMap.size; 
+    this.numberOfCartLine = AppUtils.getCart().size;
   }
 
   moveToCart() {
-    this.router.navigate(['cart'], {
+    if (AppUtils.getCart().size <= 0)
+      return;
+    this.router.navigate(['/cart'], {
       relativeTo: this.route,
     })
   }
