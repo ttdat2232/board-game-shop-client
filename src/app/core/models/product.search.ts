@@ -9,24 +9,24 @@ export class SearchProduct {
         public name?: string,
         public pageSize: number = 4,
         public pageIndex: number = 0,
-    ) {}
+    ) { }
 
     setPageSize(pageSize: number) {
         this.pageSize = pageSize;
     }
 }
 export enum ProductStatus {
-    Available, 
-    Unvailable, 
-    Hide, 
-    Remove
+    Available = 0,
+    Unvailable = 1,
+    Hide = 2,
+    Remove = 3,
 }
 export enum ProductOrderBy {
-    CreatedDate, 
+    CreatedDate,
     Id
 }
 
 export enum Sort {
-    Ascending, 
+    Ascending,
     Descending
 }

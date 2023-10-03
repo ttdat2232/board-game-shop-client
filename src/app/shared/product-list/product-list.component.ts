@@ -7,14 +7,17 @@ import { Product } from 'src/app/core/models/product';
 import { ProductService } from 'src/app/core/services/product.service';
 import { ProductComponent } from "../product/product.component";
 import { SpinnerComponent } from "../spinner/spinner.component";
-import { delay } from 'rxjs';
+import { AppUtils } from 'src/app/utils/app.utils';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-  imports: [CommonModule, MatPaginatorModule, ProductComponent, NgFor, SpinnerComponent]
+  imports: [CommonModule, MatPaginatorModule, ProductComponent, NgFor, SpinnerComponent],
+  animations: [
+    AppUtils.simpleAnimation
+  ]
 })
 export class ProductListComponent implements OnInit, OnChanges {
   @Input() searchProduct!: SearchProduct;

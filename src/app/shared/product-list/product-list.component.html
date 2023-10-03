@@ -1,6 +1,6 @@
 <div class="row mb-3">
     <div *ngFor="let product of pagingResult.values" class="col-xxl-3 col-md-6">
-        <div class="product">
+        <div class="product" @simpleAnimation *ngIf="product">
             <app-product [product]="product"></app-product>
         </div>
     </div>

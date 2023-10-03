@@ -1,13 +1,13 @@
-<div class="d-flex justify-content-center">
-    <form [formGroup]="form" class="row" style="width: 70%;">
-        <div class="form-group col-6">
+<div class="d-flex flex-column align-items-center">
+    <form *ngIf="!isDone"  [formGroup]="form" class="row" style="width: 70%;">
+        <div [ngClass]="formGroupClass">
             <label>Tỉnh/Thành</label>
             <select class="form-control" (change)="onProviceChange($event)" formControlName="province">
                 <option *ngFor="let division of divisions" [value]="division.code + ',' + division.name">
                     {{division.name}}</option>
             </select>
         </div>
-        <div class="form-group col-6">
+        <div [ngClass]="formGroupClass">
             <label>Quận/Huyện</label>
             <select class="form-control" (change)="onDistrictChange($event)" formControlName="district">
                 <option *ngFor="let district of districts" [value]="district.code + ',' + district.name">
@@ -15,7 +15,7 @@
                 </option>
             </select>
         </div>
-        <div class="form-group col-6">
+        <div  [ngClass]="formGroupClass">
             <label>Phường/Xã</label>
             <select class="form-control" formControlName="ward">
                 <option *ngFor="let ward of wards" [value]="ward.name">
@@ -23,22 +23,31 @@
                 </option>
             </select>
         </div>
-        <div class="form-group col-6">
+        <div [ngClass]="formGroupClass">
             <label>Đường, Số nhà</label>
             <input type="text" class="form-control" formControlName="houseNumber" />
         </div>
-        <div class="form-group">
+        <div [ngClass]="formGroupClass">
             <label>Số điện thoại</label>
             <input type="tel" class="form-control" formControlName="phoneNumber" />
+        </div>
+        <div [ngClass]="formGroupClass">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" />
         </div>
         <div class="d-flex justify-content-center mt-3">
             <app-button
             role="button"
             [tooltipContent]="form.invalid? 'Phiền bạn nhập hết vào form nha' : ''"
             [btnName]="'Tạo đơn'" 
-            [isDisable]="form.invalid"
+            [isDisable]="form.invalid || isSubmited"
             [ngClass]="form.invalid ? 'invalid-button' : 'valid-button' "
+            (clickEvent)="createOrder($event)"
             ></app-button>
         </div>
     </form>
+    <app-spinner *ngIf="isSubmited"></app-spinner>
+    <div *ngIf="qrUrl" style="width: 80%; object-fit: cover;" class="d-flex justify-content-center">
+        <img [src]="qrUrl" />
+    </div>
 </div>

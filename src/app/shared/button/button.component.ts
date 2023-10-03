@@ -9,7 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     '../../../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css',
   ],
   standalone: true,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.Emulated,
   imports: [MatButtonModule, MatTooltipModule],
 })
 export class ButtonComponent implements OnChanges {
