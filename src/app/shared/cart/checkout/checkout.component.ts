@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { AddressService } from 'src/app/core/services/address.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { District, Division, Ward } from 'src/app/core/models/address.model';
+import { ButtonComponent } from "../../button/button.component";
 
 @Component({
-  selector: 'app-checkout',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss'],
+    selector: 'app-checkout',
+    standalone: true,
+    templateUrl: './checkout.component.html',
+    styleUrls: ['./checkout.component.scss'],
+    imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
 })
 export class CheckoutComponent implements OnInit {
   divisions!: Division[];
@@ -22,9 +23,9 @@ export class CheckoutComponent implements OnInit {
     this.addressService.getAllDivisions()
       // .subscribe({
       //   next: data => this.divisions = data,
-      // })
+      // });
     this.form = this.fb.group({
-      phoneNumber: ['', [Validators.required, Validators.maxLength(20)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^(\+84|0)\d{9}$/)]],
       province: ['', [Validators.required]],
       district: ['', Validators.required],
       ward: ['', [Validators.required]],

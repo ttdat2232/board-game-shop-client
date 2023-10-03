@@ -1,0 +1,23 @@
+.invalid-button {
+    ::ng-deep {
+        .custom-button:before {
+            background-color: #ff3030;
+        }
+
+        .custom-button:hover {
+            color: #fff;
+        }
+    }
+}
+
+.valid-button {
+    ::ng-deep {
+        .custom-button:before {
+            background-color: #37ff00;
+        }
+
+        .custom-button:hover {
+            color: #fff;
+        }
+    }
+}

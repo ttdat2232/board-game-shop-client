@@ -31,5 +31,14 @@
             <label>Số điện thoại</label>
             <input type="tel" class="form-control" formControlName="phoneNumber" />
         </div>
+        <div class="d-flex justify-content-center mt-3">
+            <app-button
+            role="button"
+            [tooltipContent]="form.invalid? 'Phiền bạn nhập hết vào form nha' : ''"
+            [btnName]="'Tạo đơn'" 
+            [isDisable]="form.invalid"
+            [ngClass]="form.invalid ? 'invalid-button' : 'valid-button' "
+            ></app-button>
+        </div>
     </form>
 </div>

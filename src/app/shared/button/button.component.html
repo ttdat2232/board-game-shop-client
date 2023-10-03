@@ -1,5 +1,8 @@
 <button 
-class="custom-button" 
+class="custom-button"
+matTooltip="{{tooltipContent}}"
+matTooltipClass="custom-tooltip"
+[disabled]="isDisable"
 role="button"
 (click)="onClick()">
     <span class="text">
