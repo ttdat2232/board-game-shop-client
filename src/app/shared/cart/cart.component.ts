@@ -27,9 +27,10 @@ export class CartComponent implements OnInit {
         let mapProductIdQuantity = AppUtils.getCart();
         this.numberOfSelectedProducts = mapProductIdQuantity.size;
         if (mapProductIdQuantity.size <= 0) {
-          this.router.navigate([''], {
-            relativeTo: this.route,
-          });
+          if (!this.router.url.includes('checkout'))
+            this.router.navigate([''], {
+              relativeTo: this.route,
+            });
         }
       }
     })
@@ -78,7 +79,6 @@ export class CartComponent implements OnInit {
     this.numberOfSelectedProducts = this.productMap.size;
     this.lss.setItem('cart', JSON.stringify(mapProductIdQuantity, AppUtils.mapReplacer));
   }
-
 
   onCheckout() {
     this.router.navigate(['checkout'], {

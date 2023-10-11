@@ -19,3 +19,9 @@ img {
         }
     }
 }
+
+::ng-deep {
+    .mat-mdc-card {
+        box-shadow: none !important;
+    }
+}

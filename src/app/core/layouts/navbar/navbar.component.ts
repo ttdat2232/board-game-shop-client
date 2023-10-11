@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   }
 
   moveToCart() {
-    if (AppUtils.getCart().size <= 0)
+    if (this.numberOfCartLine <= 0)
       return;
     this.router.navigate(['/cart'], {
       relativeTo: this.route,

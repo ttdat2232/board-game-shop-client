@@ -1,10 +1,23 @@
-.blurred-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    pointer-events: none;
+.disagree-button {
+  ::ng-deep {
+    .custom-button:before {
+      background-color: #ff3030;
+    }
+
+    .custom-button:hover {
+      color: #fff;
+    }
   }
+}
+
+.agree-button {
+  ::ng-deep {
+    .custom-button:before {
+      background-color: #37ff00;
+    }
+
+    .custom-button:hover {
+      color: #fff;
+    }
+  }
+}

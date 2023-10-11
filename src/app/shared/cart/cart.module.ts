@@ -6,20 +6,21 @@ import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 import { CartItemComponent } from "./cart-item/cart-item.component";
 import { ButtonComponent } from "../button/button.component";
 import { CheckoutComponent } from './checkout/checkout.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatDialogConfig, MatDialogModule } from '@angular/material/dialog'
 
 @NgModule({
     declarations: [
         CartComponent,
     ],
+    providers: [MatDialogConfig],
     imports: [
         SpinnerComponent,
         CommonModule,
         CartRoutingModule,
         CartItemComponent,
         ButtonComponent,
-        CheckoutComponent
+        CheckoutComponent,
+        MatDialogModule,
     ]
 })
 export class CartModule { }
