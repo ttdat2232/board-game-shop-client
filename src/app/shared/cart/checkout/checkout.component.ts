@@ -11,8 +11,6 @@ import { CreateOrderDetails } from 'src/app/core/models/create-order-details.mod
 import { OrderService } from 'src/app/core/services/order.service';
 import { SpinnerComponent } from "../../spinner/spinner.component";
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent, DialogData } from '../../dialog/dialog.component';
 
 @Component({
   selector: 'app-checkout',
@@ -34,7 +32,6 @@ export class CheckoutComponent implements OnInit {
   isDone: boolean = false;
   isAgreePolicy: boolean = false;
   constructor(
-    private dialog: MatDialog,
     private addressService: AddressService,
     private lss: LocalStorageService,
     private orderService: OrderService,
@@ -55,14 +52,6 @@ export class CheckoutComponent implements OnInit {
       houseNumber: ['', [Validators.required]],
       email: ['', [Validators.email]]
     });
-  }
-
-  openDialog() {
-    let dialogRef = this.dialog.open(DialogComponent, {
-      data: new DialogData("Lưu ý", "nội dung", "Đồng ý", "Hủy"),
-      width: '80%',
-    });
-    dialogRef.afterClosed().subscribe(result => this.isAgreePolicy = result);
   }
 
   onProviceChange(event: any) {
@@ -86,41 +75,37 @@ export class CheckoutComponent implements OnInit {
   }
 
   createOrder(event: boolean) {
-    if (!this.isAgreePolicy) {
-      this.openDialog();
-    } else {
-      this.isSubmited = event;
-      this.isDone = true;
-      this.selectProducts = AppUtils.getCart();
-      let orderDetails: CreateOrderDetails[] = [];
-      this.selectProducts.forEach((value: number, key: string, map: Map<string, number>) => {
-        orderDetails.push(new CreateOrderDetails(key, value));
+    this.isSubmited = event;
+    this.isDone = true;
+    this.selectProducts = AppUtils.getCart();
+    let orderDetails: CreateOrderDetails[] = [];
+    this.selectProducts.forEach((value: number, key: string, map: Map<string, number>) => {
+      orderDetails.push(new CreateOrderDetails(key, value));
+    });
+    let district = this.form.value.district.split(',')[1] as string;
+    let province = this.form.value.province.split(',')[1] as string;
+    let email = (this.form.value.email as string).length > 0 ? this.form.value.email as string : undefined;
+    let order = new CreateOrder(
+      orderDetails,
+      district,
+      province,
+      this.form.value.ward,
+      this.form.value.houseNumber,
+      this.form.value.phoneNumber,
+      PaymentType.Direct,
+      email
+    );
+    this.orderService.createOrder(order)
+      .subscribe({
+        next: data => {
+          this.qrUrl = `https://img.vietqr.io/image/970436-1016258339-compact2.jpg?amount=${data.totalPrice}&addInfo=Ma Don hang: ${data.id}`;
+          this.lss.removeItem('cart');
+          this.isSubmited = false;
+        },
+        error: err => {
+          this.isSubmited = false;
+          console.log(err);
+        }
       });
-      let district = this.form.value.district.split(',')[1] as string;
-      let province = this.form.value.province.split(',')[1] as string;
-      let email = (this.form.value.email as string).length > 0 ? this.form.value.email as string : undefined;
-      let order = new CreateOrder(
-        orderDetails,
-        district,
-        province,
-        this.form.value.ward,
-        this.form.value.houseNumber,
-        this.form.value.phoneNumber,
-        PaymentType.Direct,
-        email
-      );
-      this.orderService.createOrder(order)
-        .subscribe({
-          next: data => {
-            this.qrUrl = `https://img.vietqr.io/image/970436-1016258339-compact2.jpg?amount=${data.totalPrice}&addInfo=Ma Don hang: ${data.id}`;
-            this.lss.removeItem('cart');
-            this.isSubmited = false;
-          },
-          error: err => {
-            this.isSubmited = false;
-            console.log(err);
-          }
-        });
-    }
   }
 }

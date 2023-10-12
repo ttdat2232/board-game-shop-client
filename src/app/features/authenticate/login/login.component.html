@@ -1,0 +1,47 @@
+<div class="px-4 py-5 px-md-5 text-center text-lg-start">
+    <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h1 class="my-5 display-3 fw-bold ls-tight">
+                    Board Game<br />
+                    <span class="text-primary">Description</span>
+                </h1>
+            </div>
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card">
+                    <div class="card-body py-5 px-md-5">
+                        <form>
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Email address:</label>
+                                <input type="email" formControlName="email" class="form-control" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Password:</label>
+                                <input type="password" formControlName="password" class="form-control" />
+                            </div>
+                            <div class="d-flex justify-content-around align-items-center">
+                                <app-button class="btn" [btnName]="'Đăng Nhập'"></app-button>
+                                <div>
+                                    <div id="g_id_onload"
+                                        data-client_id="866231025685-qr5pl0iaic9bqaathj6u3lg8poim7dk3.apps.googleusercontent.com"
+                                        data-context="use" data-ux_mode="popup"
+                                        data-login_uri="http://localhost:4200/authenticate" 
+                                        data-itp_support="true"
+                                        data-callback="googleLoginCallback">
+                                    </div>
+
+                                    <div class="g_id_signin" data-type="icon" data-shape="circle" data-theme="outline"
+                                        data-text="signin" data-size="large">
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="isSubmited" class="d-flex justify-content-center">
+                                <app-spinner></app-spinner>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

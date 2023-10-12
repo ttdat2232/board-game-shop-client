@@ -10,13 +10,13 @@
                         chủ</a></li>
             </ul>
             <ul class="navbar-nav">
-                <!-- <li  class="nav-item"><a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">Login</a></li> -->
-                <!-- <li  class="nav-item"><a class="nav-link" [routerLink]="['/register']" [routerLinkActive]="['active']">Register</a></li> -->
                 <button class="btn btn-outline-dark" (click)="moveToCart()">
                     <i class="bi-cart-fill me-1"></i>
                     Giỏ hàng
                     <span class="badge bg-dark text-white ms-1 rounded-pill">{{numberOfCartLine}}</span>
                 </button>
+                <li  class="nav-item"><a class="nav-link" [routerLink]="['/authenticate']" [routerLinkActive]="['active']">Đăng nhập</a></li>
+                <!-- <li  class="nav-item"><a class="nav-link" [routerLink]="['/register']" [routerLinkActive]="['active']">Register</a></li> -->
                 <!-- <li class="nav-item"><a href="" class="nav-link">Logout</a></li> -->
             </ul>
         </div>

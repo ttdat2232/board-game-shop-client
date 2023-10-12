@@ -20,7 +20,6 @@ export class ButtonComponent implements OnChanges {
       this.btnName = changes['btnName'].currentValue;
   }
   @Input() btnName!: string | "button Name";
-  @Input() color!: string | "primary";
   @Input() tooltipContent?: string; 
   @Input() isDisable: boolean = false;
   @Output() clickEvent: EventEmitter<boolean> = new EventEmitter();
